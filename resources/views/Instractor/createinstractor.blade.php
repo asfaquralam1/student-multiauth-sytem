@@ -1,57 +1,8 @@
-<!doctype html>
-<html lang="en">
-
-<head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-        integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
-    <link rel="stylesheet" type="text/css"
-        href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
-    <title>ajexinstractor</title>
-</head>
-
-<body style="background-color: #e7e7e7">
-    {{-- @yield('content') --}}
-    <div class="container-fluid" style="background-color: #13bdc9;">
-        <nav class="navbar navbar-expand-lg navbar-light">
-            <div class="container">
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <a class="navbar-brand" href="#" style="color: white ;width: 300px">STUDENT</a>
-                    {{-- <img src="/public/image/student.jpg" class="css-class" alt="alt text" width="300px"> --}}
-                    <ul class="navbar-nav"
-                        style="display:flex; justify-content: space-between;font-size:20px;margin: 0 auto;">
-                        <li class="nav-item">
-                            <a class="nav-link" href="/instractors" style="color: white">Instructor</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/courses" style="color: white">Courses</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="register/student" style="color: white">Student</a>
-                        </li>
-                    </ul>
-                    <ul class="navbar-nav" style="margin-left:auto;font-size:20px;">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">User</a>
-                        </li>
-                        <li class="nav-item">
-                            <form action="{{ route('logout') }}" method="GET" class="inline p-1">
-                                @csrf
-                                <button type="submit">Logout</button>
-                            </form>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </div>
-
+@extends('layout.app')
+@section('page_title', 'Instractor')
+@section('instractor_select', 'active')
+@section('content')
+    <h1 class="mb-10" style="text-align: center">Instractor</h1>
 
     <div class="modal fade" id="instractoraddModal">
         <div class="modal-dialog">
@@ -113,8 +64,7 @@
 
                     <div class="form-group">
                         <label for="instractor_name">Name</label><br>
-                        <input type="text" class="form-control" placeholder="name" name="instractor_name"
-                            id="edit_name">
+                        <input type="text" class="form-control" placeholder="name" name="instractor_name" id="edit_name">
                         @error('instractor_name')
                             <div class="text-danger text-small">
                                 {{ $message }}
@@ -192,14 +142,12 @@
         </div>
         <div class="jumbotron">
             <div class="row">
-                <button type="button" class="btn btn-primary" data-toggle="modal"
-                    data-target="#instractoraddModal">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#instractoraddModal">
                     Add Instractor
                 </button>
             </div>
             <br>
-            <table class="table table-bordered table-striped datatable" style="background-color: #e7e7e7"
-                id="datatable">
+            <table class="table table-bordered table-striped datatable" style="background-color: #e7e7e7" id="datatable">
                 <thead>
                     <tr>
                         <th>SI</th>
@@ -215,7 +163,7 @@
         </div>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"
+    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"
         integrity="sha512-U6K1YLIFUWcvuw5ucmMtT9HH4t0uz3M366qrF5y4vnyH6dgDzndlcGvH/Lz5k8NFh80SN95aJ5rqGZEdaQZ7ZQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
@@ -224,7 +172,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
     </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script> --}}
+
     <script type="text/javascript">
         $(document).ready(function() {
             fecthins();
@@ -239,29 +188,30 @@
                         $.each(response.instructors, function(key, item) {
                             $('tbody').append(
                                 '<tr>\
-                                                                                                                       <td>' +
+                                                                                                                           <td>' +
                                 item
                                 .id +
                                 '</td>\
-                                                                                                                       <td>' +
+                                                                                                                           <td>' +
                                 item
                                 .instractor_name +
                                 '</td>\
-                                                                                                                       <td>' +
+                                                                                                                           <td>' +
                                 item
                                 .instractor_email +
                                 '</td>\
-                                                                                                                       <td>' +
+                                                                                                                           <td>' +
                                 item
                                 .instractor_phone +
                                 '</td>\
-                                                                                                                       <td><button type="button" value="' +
+                                                                                                                           <td><button type="button" value="' +
                                 item
                                 .id +
                                 '" class="m-2 edit_inst btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button><button type="button" value="' +
                                 item.id +
                                 '" class="delete_inst btn btn-danger btn-sm"><i class="fa fa-trash" aria-hidden="true"></i></button></td>\
-                                                                                                                       </tr>');
+                                                                                                                           </tr>'
+                                );
                         });
                     },
                 });
@@ -422,21 +372,4 @@
             });
         });
     </script>
-    <script>
-        $("document").ready(function() {
-            setTimeout(function() {
-                $("#message_id").remove();
-            }, 3000);
-        });
-
-        $(function() {
-            $(".xzoom").xzoom({
-                zoomWidth: 400,
-                tint: "#333",
-                Xoffset: 15,
-            });
-        })
-    </script>
-</body>
-
-</html>
+@endsection

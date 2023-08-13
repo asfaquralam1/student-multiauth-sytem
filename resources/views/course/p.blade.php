@@ -1,8 +1,41 @@
 @extends('layout.app')
 @section('page_title', 'Course')
 @section('course_select', 'active')
-@section('content')
-<h1 class="mb-10" style="text-align: center">Course</h1>
+@section('container')
+
+    {{-- <div class="container-fluid" style="background-color: #13bdc9;">
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <div class="container">
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <a class="navbar-brand" href="#" style="color: white ;width: 300px">STUDENT</a>
+                    <ul class="navbar-nav"
+                        style="display:flex; justify-content: space-between;font-size:20px;margin: 0 auto;">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/instractors" style="color: white">Instructor</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/courses" style="color: white">Courses</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="register/student" style="color: white">Student</a>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav" style="margin-left:auto;font-size:20px;">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#">User</a>
+                        </li>
+                        <li class="nav-item">
+                            <form action="{{ route('logout') }}" method="GET" class="inline p-1">
+                                @csrf
+                                <button type="submit">Logout</button>
+                            </form>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div> --}}
+
     <!-- Modal -->
     <div class="modal fade" id="courseAddModal">
         <div class="modal-dialog" role="document">
@@ -96,10 +129,10 @@
                             </select>
                         </div>
                         {{-- <div class="form-group">
-                        <label for="instractor_name">instractor_name</label><br>
-                        <input type="text" class="form-control" placeholder="instructor_name"
-                            id="instructor_name" name="instructor_name">
-                    </div> --}}
+                            <label for="instractor_name">instractor_name</label><br>
+                            <input type="text" class="form-control" placeholder="instructor_name"
+                                id="instructor_name" name="instructor_name">
+                        </div> --}}
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                             <button type="submit" class="btn btn-primary">Save changes</button>
@@ -177,6 +210,34 @@
             </table>
         </div>
     </div>
+    {{-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script> --}}
+    {{-- <script>
+        $(document).ready(function() {
+            $('.js-example-basic-single').select2();
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+            $('.js-example-basic-multiple').select2();
+        });
+    </script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js">
+    </script>
+    <script>
+        $(document).ready(function() {
+            $('#datatable').DataTable();
+        });
+    </script> --}}
     <script type="text/javascript">
         $(document).ready(function() {
 

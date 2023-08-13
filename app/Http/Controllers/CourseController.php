@@ -12,11 +12,12 @@ class CourseController extends Controller
 {
     public function index()
     {
-        if (Auth::check()) {
-            return view('course.createcourses');
-        } else {
-            return redirect('/')->with('status', 'Please login first');
-        }
+        return view('course.createcourses');
+        // if (Auth::check()) {
+        //     return view('course.createcourses');
+        // } else {
+        //     return redirect('/')->with('status', 'Please login first');
+        // }
     }
     public function store(Request $request)
     {
