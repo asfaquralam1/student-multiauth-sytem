@@ -25,7 +25,7 @@ class InstractorController extends Controller
         $validator =  Validator::make($request->all(), [
             'instractor_name' => 'required|max:30',
             'instractor_email' => 'required|email||unique:instructors',
-            'instractor_phone' => 'required|max:10',
+            'instractor_phone' => 'required|max:11',
         ]);
 
         if ($validator->fails()) {

@@ -15,7 +15,6 @@ class CreateInstructorsTable extends Migration
     {
         Schema::create('instructors', function (Blueprint $table) {
             $table->id();
-            $table->integer('course_id')->unsigned();
             $table->string('instractor_name', 191);
             $table->string('instractor_email', 191)->unique();
             $table->integer('instractor_phone');

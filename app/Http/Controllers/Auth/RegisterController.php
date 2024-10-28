@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Course;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\MailController;
 use App\Student;
@@ -87,11 +88,13 @@ class RegisterController extends Controller
     {
         $studentshow = Student::all();
         return view('student.studnetshow', compact('studentshow',$studentshow));
+
     }
     public function registerstudentedit($id)
     {
+        $courses = Course::all();
         $student = Student::find($id);
-        return view('student.studentedit', compact('student'));
+        return view('student.studentedit', compact('student','courses'));
     }
     public function registerstudnetupdate(Request $request, $id)
     {
@@ -119,7 +122,8 @@ class RegisterController extends Controller
             'messege' => 'Successfully done',
             'alert-type' => 'success',
         );
-        return Redirect()->back()->with($notification);
+        return redirect('register/student')->with($notification);
+        //return Redirect()->back()->with($notification);
     }
     public function destroy($id)
     {

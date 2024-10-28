@@ -1,0 +1,17 @@
+body{
+    background-color: #e7e7e7;
+}
+.from-area {
+    width: 400px;
+    margin: 0 auto;
+    margin-top: 40px;
+    padding: 40px;
+    background-color: #F5F5F5;
+}
+
+.from-header {
+    text-align: center;
+    font-size: 22px;
+    font-weight: 600;
+    color: #212529;
+}

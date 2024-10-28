@@ -14,49 +14,21 @@
         integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
-
+    <link rel="stylesheet" href="{{ asset('css/main.css') }}">
+    {{-- needed for datatable --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"
     integrity="sha512-U6K1YLIFUWcvuw5ucmMtT9HH4t0uz3M366qrF5y4vnyH6dgDzndlcGvH/Lz5k8NFh80SN95aJ5rqGZEdaQZ7ZQ=="
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    {{-- needed for datatable --}}
 
     <title>@yield('page_title')</title>
+    
 </head>
 
-<body style="background-color: #FFFFFF">
-    <div class="container-fluid" style="background-color: #13bdc9;">
-        <nav class="navbar navbar-expand-lg navbar-light">
-            <div class="container">
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <a class="navbar-brand" href="#" style="color: white ;width: 300px">STUDENT</a>
-                    {{-- <img src="/public/image/student.jpg" class="css-class" alt="alt text" width="300px"> --}}
-                    <ul class="navbar-nav"
-                        style="display:flex; justify-content: space-between;font-size:20px;margin: 0 auto;">
-                        <li class="nav-item">
-                            <a class="nav-link" href="/instractors" style="color: white">Instructor</a>
-                        </li>
-                        {{-- <li class="nav-item">
-                            <a class="nav-link" href="/courses" style="color: white">Courses</a>
-                        </li> --}}
-                        <li class="nav-item">
-                            <a class="nav-link" href="/courses" style="color: white">courses</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url('/register/student') }}" style="color: white">Studented</a>
-                        </li>
-                    </ul>
-                    <ul class="navbar-nav" style="margin-left:auto;font-size:20px;">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="{{ route('/') }}"
-                                style="color: white">Login</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/register" style="color: white">Register</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </div>
+<body>
+    @include('partial.header')
+    @yield('content')
+
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
         integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
     </script>
@@ -65,11 +37,6 @@
     </script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            $('.js-example-basic-multiple').select2();
-        });
-    </script>
     <script>
         $(document).ready(function() {
             $('.js-example-basic-multiple').select2();
@@ -97,8 +64,6 @@
             });
         })
     </script> --}}
-
-    @yield('content')
 </body>
 
 </html>

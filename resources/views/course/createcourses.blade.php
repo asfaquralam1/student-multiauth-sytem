@@ -1,6 +1,4 @@
 @extends('layout.app')
-@section('page_title', 'Course')
-@section('course_select', 'active')
 @section('content')
 <h1 class="mb-10" style="text-align: center">Course</h1>
     <!-- Modal -->
@@ -15,7 +13,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="/courses" method="POST">
+                    <form action="{{ route('add-courses') }}" method="POST">
                         {{ csrf_field() }}
                         <div class="form-group">
                             <label for="course_title">Course title</label><br>
@@ -34,15 +32,15 @@
                             @endforeach
                         </select>
                         {{-- add student --}}
-                        <div class="mb-3">
+                        {{-- <div class="mb-3">
                             <label for="students">Students</label>
-                            <select class="js-example-basic-multiple" name="students[]" multiple="multiple"
+                            <select class="js-example-basic-multiple" name="students" multiple="multiple"
                                 style="width: 100%">
                                 @foreach ($student as $students)
                                     <option value="{{ $students->name }}">{{ $students->name }}</option>
                                 @endforeach
                             </select>
-                        </div>
+                        </div> --}}
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                             <button type="submit" class="btn btn-primary">Save changes</button>
@@ -86,20 +84,15 @@
                                 <option value="{{ $post->instractor_name }}">{{ $post->instractor_name }}</option>
                             @endforeach
                         </select>
-                        <div class="mb-3">
+                        {{-- <div class="mb-3">
                             <label for="students">Students</label>
                             <select class="js-example-basic-multiple" name="students[]" multiple="multiple"
                                 style="width: 100%">
-                                @foreach ($student as $students)
-                                    <option value="{{ $students->name }}">{{ $students->name }}</option>
+                                @foreach ($student as $student)
+                                    <option value="{{ $students->name }}">{{ $student->name }}</option>
                                 @endforeach
                             </select>
-                        </div>
-                        {{-- <div class="form-group">
-                        <label for="instractor_name">instractor_name</label><br>
-                        <input type="text" class="form-control" placeholder="instructor_name"
-                            id="instructor_name" name="instructor_name">
-                    </div> --}}
+                        </div> --}}
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                             <button type="submit" class="btn btn-primary">Save changes</button>
@@ -142,22 +135,22 @@
                 id="datatable">
                 <thead>
                     <tr>
-                        <th>SI</th>
-                        <th>Course Title</th>
-                        <th>Cradit Hour</th>
-                        <th>Instractor Name</th>
-                        <th>Studnets Enrolled</th>
-                        <th>Action</th>
+                        <th style="text-align: center">SI</th>
+                        <th style="text-align: center">Course Title</th>
+                        <th style="text-align: center">Cradit Hour</th>
+                        <th style="text-align: center">Instractor Name</th>
+                        <th style="text-align: center">Studnets Enrolled</th>
+                        <th style="text-align: center">Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($courses as $row)
                         <tr>
-                            <td>{{ $row->id }}</td>
-                            <td>{{ $row->course_title }}</td>
-                            <td>{{ $row->credit_hour }}</td>
-                            <td>{{ $row->instructor_name }}</td>
-                            <td>{{ $row->students }}</td>
+                            <td style="text-align: center">{{ $row->id }}</td>
+                            <td style="text-align: center">{{ $row->course_title }}</td>
+                            <td style="text-align: center">{{ $row->credit_hour }}</td>
+                            <td style="text-align: center">{{ $row->instructor_name }}</td>
+                            <td style="text-align: center">{{ $row->students }}</td>
                             <td>
                                 <div class="button_area" style="display: flex;justify-content:space-evenly">
                                     <a class="btn btn-info edit btn-sm" style="color: inherit;width:30px"><i
@@ -189,7 +182,6 @@
                 }
 
                 var data = table.row($tr).data();
-                console.log(data);
 
                 $('#course_t').val(data[1]);
                 $('#credit_h').val(data[2]);

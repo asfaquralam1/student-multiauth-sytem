@@ -41,7 +41,7 @@ class StudentfromController extends Controller
         $student->section = $request->input('section');
 
         $student->save();
-        return $student;
+        return redirect('student.all');
     }
 
     public function delete($id){

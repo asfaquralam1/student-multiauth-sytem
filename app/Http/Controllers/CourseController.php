@@ -12,12 +12,10 @@ class CourseController extends Controller
 {
     public function index()
     {
-        return view('course.createcourses');
-        // if (Auth::check()) {
-        //     return view('course.createcourses');
-        // } else {
-        //     return redirect('/')->with('status', 'Please login first');
-        // }
+        $instractors = Instructor::all();
+        $student = Student::all();
+        $courses = Course::all();
+        return view('course.createcourses', compact('instractors', 'student', 'courses'));
     }
     public function store(Request $request)
     {
@@ -25,14 +23,14 @@ class CourseController extends Controller
             'course_title' => 'required',
             'credit_hour' => 'required',
             'instructor_name' => 'required',
-            'students' => 'required|array'
+            // 'students' => 'required'
         ]);
 
         $courses = new Course();
-        $courses->course_title = $request->input('course_title');
-        $courses->credit_hour = $request->input('credit_hour');
-        $courses->instructor_name = $request->input('instructor_name');
-        $courses->students = json_encode($request->input('students'));
+        $courses->course_title = $request->course_title;
+        $courses->credit_hour = $request->credit_hour;
+        $courses->instructor_name = $request->instructor_name;
+        // $courses->students = $request->students;
         $courses->save();
         // Toastr::success('Course added', '', ['success']);
         return back()->with('success', 'Course added');

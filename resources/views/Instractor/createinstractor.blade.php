@@ -141,11 +141,9 @@
     @endif --}}
         </div>
         <div class="jumbotron">
-            <div class="row">
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#instractoraddModal">
-                    Add Instractor
-                </button>
-            </div>
+            <button type="button" class="btn btn-primary" style="margin-bottom: 10px" data-toggle="modal" data-target="#instractoraddModal">
+                Add Instractor
+            </button>
             <br>
             <table class="table table-bordered table-striped datatable" style="background-color: #e7e7e7" id="datatable">
                 <thead>
@@ -339,7 +337,7 @@
                     });
                     $.ajax({
                         type: 'POST',
-                        url: "/instractors",
+                        url: "/instractor",
                         data: my_data,
                         datatype: "json",
                         beforeSend: function() {

@@ -1,10 +1,8 @@
 @extends('layout.app')
 @section('content')
-    <div class="from">
-        <h2 style="text-align: center; padding-top:40px">Login To Your Account</h2>
-        <form action="{{ route('/') }}" method="POST"
-            style="width:400px; margin:0 auto;margin-top: 40px;padding: 40px;background-color: #F5F5F5;">
-            <h5 style="text-align:center;font-size:22px;font-weight:600;color:#212529">Login</h5>
+    <div class="from-area">
+        <form action="{{ route('/') }}" method="POST">
+            <h5 class="from-header">Login</h5>
             @csrf
             @if (session('status'))
                 <div class="bg-danger p-4 rounded-lg mb-5 text-white text-center ">
@@ -41,7 +39,7 @@
                     </div>
                 @enderror
             </div>
-            <button type="submit" class="btn btn-primary" style="width: 100%;margin-top:10px">Sign In</button>
+            <button type="submit" class="btn btn-primary" style="width: 100%;margin-top:10px">Log in</button>
         </form>
     </div>
 @endsection

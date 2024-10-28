@@ -1,8 +1,5 @@
 <?php
 
-use App\Course;
-use App\Instructor;
-use App\Student;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/','Auth\LoginController@index')->name('/');
@@ -10,7 +7,7 @@ Route::get('/','Auth\LoginController@index')->name('/');
 Route::get('/register', 'Auth\RegisterController@index');
 Route::post('/register', 'Auth\RegisterController@register')->name('register');
 Route::get('/register/student','Auth\RegisterController@registerstudent')->name('/register/student');
-Route::get('register/{id}/edit', 'Auth\RegisterController@registerstudentedit');
+Route::get('register/{id}/edit', 'Auth\RegisterController@registerstudentedit')->name('edit-profile');
 Route::put('register/{id}', 'Auth\RegisterController@registerstudnetupdate');
 Route::delete('register/{id}', 'Auth\RegisterController@destroy');
 
@@ -37,8 +34,8 @@ Route::delete('studentdelete/{id}', 'StudentfromController@delete');
 
 //Course
 Route::get('courses', 'CourseController@index')->name('courses');
-Route::post('courses', 'CourseController@store');
-Route::get('courses','CourseController@show');
+Route::post('add-courses', 'CourseController@store')->name('add-courses');
+Route::get('all-courses','CourseController@show');
 Route::get('coursesedit/{id}', 'CourseController@edit')->name('coursesedit/{id}');
 Route::put('courses-update/{id}', 'CourseController@update');
 Route::delete('courses/{id}', 'CourseController@destroy');
@@ -46,7 +43,7 @@ Route::delete('courses/{id}', 'CourseController@destroy');
 
 // instractors
 Route::get('instractors','InstractorController@index')->name('instractors');
-Route::post('instractors', 'InstractorController@store');
+Route::post('instractor', 'InstractorController@store');
 Route::get('instractorsshow', 'InstractorController@show')->name('instractors.show');
 Route::get('edit-isntractor/{id}', 'InstractorController@edit');
 Route::put('update-isntractor/{id}', 'InstractorController@update');

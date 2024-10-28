@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+{{-- <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -15,6 +15,24 @@
 </head>
 
 <body style="background-color: #e7e7e7">
+
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+    </script>
+</body>
+
+</html> --}}
+@extends('layout.app')
+@section('page_title', '')
+@section('course_select', 'active')
+@section('container')
     <div class="modal-content">
         <div class="modal-header">
             <h5 class="modal-title" id="editcourseModal">Course Edit Model
@@ -24,7 +42,7 @@
             </button>
         </div>
         <div class="modal-body">
-            <form action="{{ url('courses-update/'.$course->id) }}" method="POST">
+            <form action="{{ url('courses-update/' . $course->id) }}" method="POST">
                 {{ csrf_field() }}
                 @method('PUT')
                 <div class="form-group">
@@ -34,11 +52,12 @@
                 </div>
                 <div class="form-group">
                     <label for="credit_hour">Credit hour</label><br>
-                    <input type="number" class="form-control" placeholder="credit hour" id="credit_hour"
-                        name="credit_hour" value="{{ $course->credit_hour }}">
+                    <input type="number" class="form-control" placeholder="credit hour" id="credit_hour" name="credit_hour"
+                        value="{{ $course->credit_hour }}">
                 </div>
                 <label for="instractor_name">Instractor</label>
-                <select class="js-example-basic-single" name="instructor_name" style="width: 100%" value="{{ $course->instructor_name }}">
+                <select class="js-example-basic-single" name="instructor_name" style="width: 100%"
+                    value="{{ $course->instructor_name }}">
                     @foreach ($instractors as $post)
                         <option value="{{ $course->instructor_name }}">{{ $post->instractor_name }}</option>
                     @endforeach
@@ -55,15 +74,4 @@
             </form>
         </div>
     </div>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
-        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
-    </script>
-</body>
-
-</html>
+@endsection

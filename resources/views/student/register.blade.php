@@ -1,6 +1,5 @@
 @extends('layout.app')
 @section('content')
-<h2 style="text-align: center; margin-top: 30px">Create An Account</h2>
     <form action="{{ route('register') }}" method="POST" enctype="multipart/form-data"
         style="width:400px; margin:0 auto;margin-top: 50px; padding: 20px;background-color: #F5F5F5;">
         <h5 style="text-align:center;font-size:22px;font-weight:600;color:#212529">Register</h5>
