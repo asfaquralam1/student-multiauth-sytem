@@ -1,7 +1,7 @@
 @extends('layout.app')
 @section('content')
     <div class="from-area">
-        <form action="{{ route('/') }}" method="POST">
+        <form action="{{ route('login') }}" method="POST">
             <h5 class="from-header">Login</h5>
             @csrf
             @if (session('status'))

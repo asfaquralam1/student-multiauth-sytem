@@ -17,9 +17,7 @@
             </ul>
             <ul class="navbar-nav" style="margin-left:auto;font-size:20px;">
                 @if (Auth::user())
-                <a class="nav-link" href="">
-                    <i class="fa fa-user"></i>
-                </a>
+                <a class="nav-link" href="">{{auth()->user()->name}}</a>
                 @else
                 <a class="nav-link" href="" style="color: white"><i class="fa fa-user"></i></a>
                 @endif
