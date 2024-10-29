@@ -34,10 +34,7 @@ class RegisterController extends Controller
 
     public function register(Request $request)
     {
-        $Student = DB::table('students')
-            ->where([
-                ['email', '=', $request->input('email')],
-            ])->exists();
+        $Student = Student::where('email', $request->email)->first();
         if ($Student) {
             return back()->with('status', 'Email is already registered');
         } else {
@@ -67,17 +64,12 @@ class RegisterController extends Controller
             // 'email' => 'required|email',
             'verification_code' => 'required',
         ]);
-        $student = DB::table('students')
-            ->where([
-                ['verification_code', '=', $request->input('verification_code')],
-            ])->update(array('is_verified' => 1));
+        $student = Student::where('verification_code', $request->verification_code)
+            ->update(['is_verified' => 1]);
 
-
-        $student = DB::table('students')
-            ->where([
-                // ['email', '=', $request->input('email')],
-                ['verification_code', '=', $request->input('verification_code')],
-            ])->first();
+        $student = Student::where('verification_code', $request->verification_code)
+            // ->where('email', $request->email) 
+            ->first();
 
         if ($student) {
             return redirect('/')->with(session()->flash('alert-success', 'Your account is verified. Please login!'));
@@ -86,18 +78,21 @@ class RegisterController extends Controller
     }
     public function registerstudent()
     {
-        $studentshow = Student::all();
-        return view('student.studnetshow', compact('studentshow',$studentshow));
-
+        $studentshow = Student::with('courses')->get();
+        return view('student.studnetshow', compact('studentshow'));
     }
     public function registerstudentedit($id)
     {
         $courses = Course::all();
         $student = Student::find($id);
-        return view('student.studentedit', compact('student','courses'));
+        return view('student.studentedit', compact('student', 'courses'));
     }
     public function registerstudnetupdate(Request $request, $id)
     {
+        $request->validate([
+            'courses' => 'required|array',
+            'courses.*' => 'exists:courses,id', // Validate role IDs
+        ]);
         $student = Student::find($id);
         $student->name = $request->name;
         $student->email = $request->email;
@@ -113,11 +108,12 @@ class RegisterController extends Controller
         //     return response()->json(['message' => 'Missing file'], 422);
         // }
         $image = $request->file('image');
-        $imageName = time(). '.' . $image->extension();
-        $image->move(public_path('images'),$imageName);
+        $imageName = time() . '.' . $image->extension();
+        $image->move(public_path('images'), $imageName);
         $student->image = $imageName;
         $student->certificate = $request->certificate;
         $student->save();
+        $student->courses()->attach($request->courses);
         $notification = array(
             'messege' => 'Successfully done',
             'alert-type' => 'success',
@@ -127,12 +123,12 @@ class RegisterController extends Controller
     }
     public function destroy($id)
     {
-        $student=Student::find($id);
+        $student = Student::find($id);
         $student->delete();
 
-        $notification=array(
-            'messege'=> 'Successfully done',
-            'alert-type'=>'success',
+        $notification = array(
+            'messege' => 'Successfully done',
+            'alert-type' => 'success',
         );
         return Redirect()->back()->with($notification);
     }

@@ -38,14 +38,9 @@ class Student extends Model
     ];
 
     // for many to many
-    // public function course()
-    // {
-    //     return $this->belongsToMany(Course::class);
-    // }
-
-     public function take()
+    public function courses()
     {
-        return $this->hasMany(Take::class);
+        return $this->belongsToMany(Course::class);
     }
 
 }

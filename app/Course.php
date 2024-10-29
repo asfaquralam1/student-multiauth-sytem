@@ -20,4 +20,8 @@ class Course extends Model
     // {
     //     return $this->hasMany(Take::class);
     // }
+    public function students()
+    {
+        return $this->belongsToMany(Student::class);
+    }
 }

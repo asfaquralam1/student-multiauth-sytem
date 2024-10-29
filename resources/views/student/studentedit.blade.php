@@ -29,9 +29,9 @@
             </div>
             <div class="mb-3">
                 <label for="Courses">Courses</label>
-                <select class="js-example-basic-multiple" name="courses[]" multiple="multiple" style="width: 100%">
+                <select class="js-example-basic-multiple" name="courses[]" multiple style="width: 100%">
                     @foreach ($courses as $course)
-                        <option value="{{ $course->course_title }}">{{ $course->course_title }}</option>
+                        <option value="{{ $course->id }}">{{ $course->course_title }}</option>
                     @endforeach
                 </select>
             </div>
