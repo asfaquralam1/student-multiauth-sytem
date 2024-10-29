@@ -85,35 +85,37 @@ class RegisterController extends Controller
     {
         $courses = Course::all();
         $student = Student::find($id);
-        return view('student.studentedit', compact('student', 'courses'));
+        $selectedCourses = $student->courses->pluck('id')->toArray();
+        return view('student.studentedit', compact('student', 'courses','selectedCourses'));
     }
     public function registerstudnetupdate(Request $request, $id)
     {
         $request->validate([
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'courses' => 'required|array',
             'courses.*' => 'exists:courses,id', // Validate role IDs
         ]);
         $student = Student::find($id);
         $student->name = $request->name;
         $student->email = $request->email;
-        // $student->password = $request->password;
         $student->phone = $request->phone;
         $student->address  = $request->address;
         $student->gender  = $request->gender;
         $student->date_of_birth = $request->date_of_birth;
-        $request->validate([
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        ]);
-        // if (!$request->has('image')) {
-        //     return response()->json(['message' => 'Missing file'], 422);
-        // }
         $image = $request->file('image');
         $imageName = time() . '.' . $image->extension();
         $image->move(public_path('images'), $imageName);
         $student->image = $imageName;
-        $student->certificate = $request->certificate;
+        // $student->certificate = $request->certificate;
+        if ($request->hasFile('certificate')) {
+            // Store the file
+            $path = $request->file('certificate')->store('uploads'); // 'certificates' is the folder name
+    
+            // Assign the file path to the student's certificate attribute
+            $student->certificate = $path;
+        }
+        $student->courses()->sync($request->courses);
         $student->save();
-        $student->courses()->attach($request->courses);
         $notification = array(
             'messege' => 'Successfully done',
             'alert-type' => 'success',
