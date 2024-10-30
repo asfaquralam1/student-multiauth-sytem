@@ -179,7 +179,7 @@
             function fecthins() {
                 $.ajax({
                     type: 'GET',
-                    url: 'instractorsshow',
+                    url: "/instractors/show",
                     dataType: "json",
                     success: function(response) {
                         $('tbody').html("");
@@ -223,7 +223,7 @@
                     $('#instractoreditModal').modal('show');
                     $.ajax({
                         type: 'GET',
-                        url: "/edit-isntractor/" + ist_id,
+                        url: "instractors/" + ist_id + "/edit",
                         dataType: "json",
                         success: function(response) {
                             console.log(response);
@@ -262,7 +262,7 @@
                     });
                     $.ajax({
                         type: "PUT",
-                        url: "update-isntractor/" + ist_id,
+                        url: "instractors/" + ist_id,
                         data: my_data,
                         dataType: "json",
                         success: function(response) {
@@ -308,7 +308,7 @@
 
                 $.ajax({
                     type: "DELETE",
-                    url: "delete-isntractor/" + ist_id,
+                    url: "instractors/" + ist_id,
                     dataType: "json",
                     success: function(response) {
                         $('#success_message').addClass('alert alert-success');
@@ -337,7 +337,7 @@
                     });
                     $.ajax({
                         type: 'POST',
-                        url: "/instractor",
+                        url: "/instractors",
                         data: my_data,
                         datatype: "json",
                         beforeSend: function() {

@@ -2,10 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Course;
 use App\Instructor;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class InstractorController extends Controller
@@ -39,11 +37,11 @@ class InstractorController extends Controller
             $instructors->instractor_email = $request->input('instractor_email');
             $instructors->instractor_phone = $request->input('instractor_phone');
             $instructors->save();
-            return response()->json([
-                'status' => 200,
-                'message' => 'Instructors Added Successfully',
-            ]);
-            return back()->with('success','created successfully');
+            // return response()->json([
+            //     'status' => 200,
+            //     'message' => 'Instructors Added Successfully',
+            // ]);
+            return redirect()->back()->with('success', 'created successfully');
         }
     }
 
@@ -55,7 +53,6 @@ class InstractorController extends Controller
                 'instructors' => $instructors,
             ]
         );
-        return view('Instractor.createinstractor',compact('instructors'));
     }
     public function edit($id)
     {

@@ -43,9 +43,11 @@ Route::delete('courses/{id}', 'CourseController@destroy');
 
 
 // instractors
-Route::get('instractors','InstractorController@index')->name('instractors');
-Route::post('instractor', 'InstractorController@store');
-Route::get('instractorsshow', 'InstractorController@show')->name('instractors.show');
-Route::get('edit-isntractor/{id}', 'InstractorController@edit');
-Route::put('update-isntractor/{id}', 'InstractorController@update');
-Route::delete('delete-isntractor/{id}', 'InstractorController@destroy');
+// Route::get('instractors','InstractorController@index');
+// Route::post('instractor/create', 'InstractorController@store');
+// Route::get('instractors/show', 'InstractorController@show');
+// Route::get('instractors/{id}/edit', 'InstractorController@edit');
+// Route::put('instractors/{id}', 'InstractorController@update');
+// Route::delete('instractors/{id}', 'InstractorController@destroy');
+
+Route::resource('instractors', 'InstractorController');
