@@ -14,7 +14,7 @@ class CourseController extends Controller
     {
         $instractors = Instructor::all();
         $student = Student::all();
-        $courses = Course::all();
+        $courses = Course::with('students')->get();
         return view('course.createcourses', compact('instractors', 'student', 'courses'));
     }
     public function store(Request $request)

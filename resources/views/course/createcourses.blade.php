@@ -159,7 +159,7 @@
                                         style="width: 30px">
                                         @csrf
                                         @method('DELETE')
-                                        <button class="btn btn-danger btn-sm" style="submit"><i class="fa fa-trash"
+                                        <button class="btn btn-danger btn-sm" type="submit"><i class="fa fa-trash"
                                                 aria-hidden="true"></i></button>
                                     </form>
                                 </div>

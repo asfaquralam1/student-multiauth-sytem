@@ -90,6 +90,7 @@ class RegisterController extends Controller
     public function registerstudnetupdate(Request $request, $id)
     {
         $request->validate([
+            'name' => 'required|min:5',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'certificate' => 'required|mimes:pdf,xlx,csv|max:2048',
             'courses' => 'required|array',

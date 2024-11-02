@@ -52,3 +52,6 @@ Route::delete('courses/{id}', 'CourseController@destroy');
 
 Route::resource('instractors', 'InstractorController');
 Route::get('/pdf/view/{filename}', 'Auth\RegisterController@viewPDF')->name('pdf.view');
+
+Route::get('/practice', 'HomeController@parctice');
+Route::post('/practice', 'HomeController@parctice_create')->name('parctice-create');
