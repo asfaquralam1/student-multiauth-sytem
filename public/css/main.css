@@ -1,6 +1,7 @@
-body{
+body {
     background-color: #e7e7e7;
 }
+
 .from-area {
     width: 400px;
     margin: 0 auto;
@@ -14,4 +15,12 @@ body{
     font-size: 22px;
     font-weight: 600;
     color: #212529;
+}
+
+.student-edit-form {
+    width: 400px;
+    margin: 0 auto;
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #F5F5F5;
 }

@@ -51,3 +51,4 @@ Route::delete('courses/{id}', 'CourseController@destroy');
 // Route::delete('instractors/{id}', 'InstractorController@destroy');
 
 Route::resource('instractors', 'InstractorController');
+Route::get('/pdf/view/{filename}', 'Auth\RegisterController@viewPDF')->name('pdf.view');

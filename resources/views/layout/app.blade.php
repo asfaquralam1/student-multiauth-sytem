@@ -21,7 +21,7 @@
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     {{-- needed for datatable --}}
 
-    <title>@yield('page_title')</title>
+    <title>@yield('page-title')</title>
     
 </head>
 

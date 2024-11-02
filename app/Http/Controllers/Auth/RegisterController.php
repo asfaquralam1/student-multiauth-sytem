@@ -7,7 +7,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\MailController;
 use App\Student;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
@@ -28,7 +27,7 @@ class RegisterController extends Controller
             // 'gender' => ['required', 'string', 'max:255'],
             // 'date_of_birth' => ['required', 'string', 'max:255'],
             'image' => ['required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'],
-            // 'certificate' => ['required', 'string', 'max:255']
+            'certificate' => 'required|mimes:pdf,xlx,csv|max:2048',
         ]);
     }
 
@@ -86,15 +85,29 @@ class RegisterController extends Controller
         $courses = Course::all();
         $student = Student::find($id);
         $selectedCourses = $student->courses->pluck('id')->toArray();
-        return view('student.studentedit', compact('student', 'courses','selectedCourses'));
+        return view('student.studentedit', compact('student', 'courses', 'selectedCourses'));
     }
     public function registerstudnetupdate(Request $request, $id)
     {
         $request->validate([
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'certificate' => 'required|mimes:pdf,xlx,csv|max:2048',
             'courses' => 'required|array',
-            'courses.*' => 'exists:courses,id', // Validate role IDs
+            'courses.*' => 'exists:courses,id',
+        ], [
+            'image.required' => 'An image is required.',
+            'image.image' => 'The file must be an image.',
+            'image.mimes' => 'The image must be a file of type: jpeg, png, jpg, gif, svg.',
+            'image.max' => 'The image may not be greater than 2048 kilobytes.',
+            'certificate.required' => 'A certificate is required.',
+            'certificate.mimes' => 'The certificate must be a file of type: pdf, xls, csv.',
+            'certificate.max' => 'The certificate may not be greater than 2048 kilobytes.',
+            'courses.required' => 'At least one course must be selected.',
+            'courses.array' => 'Courses must be an array.',
+            'courses.*.exists' => 'The selected course is invalid.',
         ]);
+
+
         $student = Student::find($id);
         $student->name = $request->name;
         $student->email = $request->email;
@@ -106,22 +119,29 @@ class RegisterController extends Controller
         $imageName = time() . '.' . $image->extension();
         $image->move(public_path('images'), $imageName);
         $student->image = $imageName;
-        // $student->certificate = $request->certificate;
-        if ($request->hasFile('certificate')) {
-            // Store the file
-            $path = $request->file('certificate')->store('uploads'); // 'certificates' is the folder name
-    
-            // Assign the file path to the student's certificate attribute
-            $student->certificate = $path;
-        }
+        $certificate = $request->file('certificate');
+        $fileName = time() . '.' . $certificate->extension();
+        $certificate->move(public_path('certificate'), $fileName);
+        $student->certificate = $fileName;
         $student->courses()->sync($request->courses);
         $student->save();
         $notification = array(
             'messege' => 'Successfully done',
             'alert-type' => 'success',
         );
-        return redirect('register/student')->with($notification);
+        return redirect('register/student')->with('fileName', $fileName);
         //return Redirect()->back()->with($notification);
+    }
+    public function viewPDF($filename)
+    {
+        //$path = storage_path('certificate/' . $filename);
+        $path = public_path('certificate/' . $filename);
+
+        if (!file_exists($path)) {
+            abort(404);
+        }
+
+        return response()->file($path);
     }
     public function destroy($id)
     {
