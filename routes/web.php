@@ -2,12 +2,12 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/','Auth\LoginController@index')->name('/');
-Route::post('/login','Auth\LoginController@login')->name('login');
+Route::post('/login-user', 'Auth\LoginController@login')->name('/');
+Route::get('/login', 'Auth\LoginController@index')->name('login');
 //Registration
 Route::get('/register', 'Auth\RegisterController@index');
 Route::post('/register', 'Auth\RegisterController@register')->name('register');
-Route::get('/register/student','Auth\RegisterController@registerstudent')->name('/register/student');
+Route::get('/register/student', 'Auth\RegisterController@registerstudent')->name('/register/student');
 Route::get('register/{id}/edit', 'Auth\RegisterController@registerstudentedit')->name('edit-profile');
 Route::put('register/{id}', 'Auth\RegisterController@registerstudnetupdate');
 Route::delete('register/{id}', 'Auth\RegisterController@destroy');
@@ -36,7 +36,7 @@ Route::delete('studentdelete/{id}', 'StudentfromController@delete');
 //Course
 Route::get('courses', 'CourseController@index')->name('courses');
 Route::post('add-courses', 'CourseController@store')->name('add-courses');
-Route::get('all-courses','CourseController@show');
+Route::get('all-courses', 'CourseController@show');
 Route::get('coursesedit/{id}', 'CourseController@edit')->name('coursesedit/{id}');
 Route::put('courses-update/{id}', 'CourseController@update');
 Route::delete('courses/{id}', 'CourseController@destroy');
@@ -53,5 +53,9 @@ Route::delete('courses/{id}', 'CourseController@destroy');
 Route::resource('instractors', 'InstractorController');
 Route::get('/pdf/view/{filename}', 'Auth\RegisterController@viewPDF')->name('pdf.view');
 
+Route::get('/practice/login', 'HomeController@parctice_loginview')->name('practice-login');
+Route::post('/practice/login', 'HomeController@parctice_login')->name('practice-login');
+Route::middleware('auth')->group(function () {
+});
 Route::get('/practice', 'HomeController@parctice');
-Route::post('/practice', 'HomeController@parctice_create')->name('parctice-create');
+Route::post('/practice', 'HomeController@parctice_create')->name('practice-create');
