@@ -6,7 +6,6 @@ use App\Course;
 use App\Instructor;
 use App\Student;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class CourseController extends Controller
 {
@@ -48,7 +47,7 @@ class CourseController extends Controller
 
         $student = Student::all();
         $courses = Course::all();
-        return view('course.createcourses', compact('instractors', 'student'))->with('courses', $courses, $instractors, $student);
+        return view('course.createcourses', compact('instractors', 'student','courses'));
     }
     public function edit($id)
     {

@@ -1,21 +1,20 @@
-<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #121954;">
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #1C305C;">
     <div class="container">
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <a class="navbar-brand" href="#" style="color: white ;width: 300px">S M C</a>
+        <div class="collapse navbar-collapse" id="navbarNav" style="display:flex;justify-content:space-between;">
+            <a class="navbar-brand" style="color: white;" href="#">S M C</a>
             {{-- <img src="/public/image/student.jpg" class="css-class" alt="alt text" width="300px"> --}}
-            <ul class="navbar-nav"
-                style="display:flex; justify-content: space-between;font-size:20px;margin: 0 auto;">
+            <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="/instractors" style="color: white">Instructor</a>
+                    <a class="nav-link" href="{{route('instractors.index')}}">Instructor</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/courses" style="color: white">Courses</a>
+                    <a class="nav-link" href="{{route('courses')}}">Courses</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url('/register/student') }}" style="color: white">Student</a>
+                    <a class="nav-link" href="{{ route('register-student') }}">Student</a>
                 </li>
             </ul>
-            <ul class="navbar-nav" style="margin-left:auto;font-size:20px;">
+            <ul class="navbar-nav">
                 @if (Auth::user())
                 <a class="nav-link" href="">{{auth()->user()->name}}</a>
                 @else

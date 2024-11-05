@@ -33,6 +33,11 @@ class RegisterController extends Controller
 
     public function register(Request $request)
     {
+        $this->validate($request, [
+            'name' => 'required',
+            'email' => 'required',
+            'password' => 'required',
+        ]);
         $Student = Student::where('email', $request->email)->first();
         if ($Student) {
             return back()->with('status', 'Email is already registered');

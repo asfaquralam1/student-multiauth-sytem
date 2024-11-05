@@ -3,18 +3,24 @@ body {
 }
 
 .from-area {
-    width: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.form {
+    width: 350px;
     margin: 0 auto;
-    margin-top: 40px;
     padding: 40px;
-    background-color: #F5F5F5;
+    background-color: #1C305C;
+    color: white;
 }
 
 .from-header {
     text-align: center;
-    font-size: 22px;
     font-weight: 600;
-    color: #212529;
+    color: white;
 }
 
 .student-edit-form {
@@ -23,4 +29,8 @@ body {
     margin-top: 20px;
     padding: 20px;
     background-color: #F5F5F5;
+}
+
+.nav-link{
+    color: white !important;
 }

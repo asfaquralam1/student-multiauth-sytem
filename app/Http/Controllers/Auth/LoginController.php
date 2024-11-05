@@ -25,7 +25,7 @@ class LoginController extends Controller
             // return redirect()->route('/register/student');
             return redirect()->intended('/register/student');
         } else {
-            return back()->with('status', 'Invalid login details');
+            return back()->with('status', 'Invalid login cre');
         }
     }
 }

@@ -2,12 +2,12 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::post('/login-user', 'Auth\LoginController@login')->name('/');
-Route::get('/login', 'Auth\LoginController@index')->name('login');
+Route::get('/', 'Auth\LoginController@index')->name('/');
+Route::post('/login', 'Auth\LoginController@login')->name('login');
 //Registration
 Route::get('/register', 'Auth\RegisterController@index');
 Route::post('/register', 'Auth\RegisterController@register')->name('register');
-Route::get('/register/student', 'Auth\RegisterController@registerstudent')->name('/register/student');
+Route::get('/register/student', 'Auth\RegisterController@registerstudent')->name('register-student');
 Route::get('register/{id}/edit', 'Auth\RegisterController@registerstudentedit')->name('edit-profile');
 Route::put('register/{id}', 'Auth\RegisterController@registerstudnetupdate');
 Route::delete('register/{id}', 'Auth\RegisterController@destroy');
@@ -56,6 +56,7 @@ Route::get('/pdf/view/{filename}', 'Auth\RegisterController@viewPDF')->name('pdf
 Route::get('/practice/login', 'HomeController@parctice_loginview')->name('practice-login');
 Route::post('/practice/login', 'HomeController@parctice_login')->name('practice-login');
 Route::middleware('auth')->group(function () {
+    Route::get('/practice', 'HomeController@parctice');
 });
 Route::get('/practice', 'HomeController@parctice');
 Route::post('/practice', 'HomeController@parctice_create')->name('practice-create');
